@@ -10,7 +10,8 @@ function AppText({children}) {
 const styles = StyleSheet.create({
   text: {
     fontSize: 18,
-    fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir"
+    fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
+    color: "#F0F8FF"
   }
 });
 
