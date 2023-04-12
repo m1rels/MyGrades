@@ -18,16 +18,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     backgroundColor: "#002395",
     width: "100%",
-    height: 60,
+    height: 70,
     borderRadius: 25,
     borderWidth: 5,
-    height: 70,
     alignItems: "center",
     paddingHorizontal: 25,
   },
   text: {
-    fontSize: 21,
-    fontWeight: "700",
+    fontSize: 18,
+    fontWeight: "900",
   }
 });
 
