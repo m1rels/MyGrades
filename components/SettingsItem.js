@@ -1,16 +1,14 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import AppText from './AppText';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import defaultStyles from "../config/styles";
 
-function SettingsItem({icon, text}) {
+function SettingsItem(props) {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container}>
         <AppText>Email</AppText>
-        {icon ? <MaterialCommunityIcons style={styles.icon} name={icon} size={20} color="#c3cdca"/> :
-        <Text style={defaultStyles.text}>{text}</Text>}
-    </View>
+        <MaterialCommunityIcons size={20} name="chevron-right" color="#c3cdca"/> 
+    </TouchableOpacity>
   );
 }
 
