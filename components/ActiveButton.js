@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 21,
     color: "#002366",
+    fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
   }
 });
 
