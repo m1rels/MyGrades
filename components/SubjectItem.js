@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     alignItems: "center",
     paddingHorizontal: 25,
+    marginVertical: 7
   },
   text: {
     fontSize: 18,
