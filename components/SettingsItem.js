@@ -3,11 +3,11 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import AppText from './AppText';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-function SettingsItem({ title, text}) {
+function SettingsItem({ title }) {
   return (
     <TouchableOpacity style={styles.container}>
         <View style={styles.item}><AppText>{title}</AppText></View>
-        <MaterialCommunityIcons size={20} name="chevron-right" color="#c3cdca"/> : <View style={styles.item}><AppText>{text}</AppText></View>
+        <MaterialCommunityIcons size={20} name="chevron-right" color="#c3cdca"/>
     </TouchableOpacity>
   );
 }
