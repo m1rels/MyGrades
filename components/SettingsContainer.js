@@ -2,15 +2,15 @@ import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import SettingsItem from './SettingsItem';
 
-function SettingsContainer({heading}) {
+function SettingsContainer({heading, children}) {
   return (
     <View style={styles.container}>
         {heading &&
             <View style={styles.heading}>
                 <Text style={styles.title}>{heading}</Text>
             </View>}
-        <View>
-            <SettingsItem title="Profil" />
+        <View style={styles.list}>
+            {children}
         </View>
     </View>
     
@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#002395",
     width: "100%",
     padding: 20,
+    display: "flex",
   },
   heading: {
     paddingBottom: 10,
@@ -33,6 +34,9 @@ const styles = StyleSheet.create({
     fontSize: 21,
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
     fontWeight: "700"
+  },
+  list: {
+    rowGap: 10, 
   }
 });
 

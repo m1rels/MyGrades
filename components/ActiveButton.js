@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import defaultStyles from "../config/styles";
 
-function ActiveButton({text}) {
+function ActiveButton({text, style}) {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={[styles.container, style]}>
         <Text style={ styles.text }>{text}</Text>
     </TouchableOpacity>
   );
@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     fontSize: 21,
     color: "#002366",
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
+    fontWeight: "600"
   }
 });
 
