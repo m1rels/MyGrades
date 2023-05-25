@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, View, Text, StyleSheet } from 'react-native';
+import defaultStyles from "../config/styles";
 import AppButton from "./AppButton";
 
-const CustomModal = ({ visible, onRequestClose, onPress, buttonText, children }) => {
+const CustomModal = ({ visible, onRequestClose, onPress, title, children }) => {
   const [contentHeight, setContentHeight] = useState(0);
 
   const handleContentLayout = (event) => {
@@ -28,8 +29,8 @@ const CustomModal = ({ visible, onRequestClose, onPress, buttonText, children })
           style={[styles.modalContent, { height: contentHeight > 0 ? contentHeight : 'auto' }]}
           onLayout={handleContentLayout}
         >
+        <Text style={[defaultStyles.text, styles.modalTitle]}>{title}</Text>
           {children}
-          <AppButton buttonText={buttonText} onPress={onPress} />
           {/* Weitere Inhalte hier */}
         </View>
       </View>
@@ -49,6 +50,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "#002395"
   },
+  modalTitle: {
+    fontSize: 21,
+    fontWeight: 700
+  }
 });
 
 export default CustomModal;

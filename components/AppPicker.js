@@ -4,7 +4,7 @@ import {MaterialCommunityIcons} from "@expo/vector-icons";
 import AppText from './AppText';
 import AppModal from "./AppModal";
 
-function AppPicker({ title, buttonText, children }) {
+function AppPicker({ title, children }) {
 
   const [modalVisible, setModalVisible] = useState("false");
 
@@ -16,7 +16,7 @@ function AppPicker({ title, buttonText, children }) {
         </AppText>
         <MaterialCommunityIcons name='arrow-right' size={20} style={styles.icon} />
         </TouchableOpacity>
-        <AppModal visible={modalVisible} onPress={() => setModalVisible("false")} buttonText={buttonText} children={children} />
+        <AppModal visible={modalVisible} onPress={() => setModalVisible("false")} children={children} title={title} />
     </>
   );
 }
