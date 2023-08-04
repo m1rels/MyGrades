@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, TouchableOpacity, Modal } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { StyleSheet, TouchableOpacity, FlatList, TouchableWithoutFeedback } from 'react-native';
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 import AppText from './AppText';
-import AppModal from "./AppModal";
+import CheckBoxModal from "./CheckBoxModal";
 
-function AppPicker({ title, children }) {
+function AppPicker({ title, data, setData, onSelectItem }) {
 
   const [modalVisible, setModalVisible] = useState("false");
-
+  
   return (
     <>
         <TouchableOpacity style={styles.container} onPress={() => setModalVisible(true)}>
@@ -16,7 +16,7 @@ function AppPicker({ title, children }) {
         </AppText>
         <MaterialCommunityIcons name='arrow-right' size={20} style={styles.icon} />
         </TouchableOpacity>
-        <AppModal visible={modalVisible} onPress={() => setModalVisible("false")} children={children} title={title} />
+        <CheckBoxModal visible={modalVisible} onPress={() => setModalVisible(false)} title={title} data={data} setData={setData} onSelectItem={onSelectItem} closeModal={() => setModalVisible(false)} />
     </>
   );
 }

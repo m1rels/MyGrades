@@ -1,20 +1,20 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, StyleSheet, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import AppText from './AppText';
 
-function AppCheckBox({name}) {
-
-    const [isChecked, setChecked] = useState(false);
+function AppCheckBox({name, onPress, ...otherProps}) {
 
 
+    
   return (
-    <TouchableWithoutFeedback onPress={() => setChecked(!isChecked)}>
+    <TouchableOpacity onPress={onPress}>
         <View style={styles.container}>
-            <AppText style={styles.paragraph}>{name}</AppText>
-            <Checkbox style={styles.checkbox} value={isChecked} onValueChange={setChecked} />
+            <AppText style={styles.paragraph} >{name}</AppText>
+            <Checkbox style={styles.checkbox}
+            {...otherProps}/>
         </View>
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   );
 }
 
@@ -23,10 +23,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: "space-between",
-    backgroundColor: "#002395",
+    backgroundColor: "#002366",
     paddingHorizontal: 15,
     paddingVertical: 5,
-    borderRadius: 25
+    borderRadius: 25,
+    marginVertical: 10
   },
   checkbox: {
     margin: 8,
