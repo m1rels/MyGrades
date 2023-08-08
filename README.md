@@ -57,6 +57,10 @@ Contributions are welcome! If you'd like to contribute to MyGrades, please follo
 4. Push your changes to your forked repository: `git push origin feature/new-feature`.
 5. Open a pull request to the main branch of the original repository.
 
+## Download
+
+Unfortunately, I haven't released the app yet in the app store but sooner or later it will be available. If you still want to try out the app, feel free to clone this repo and run the app on a simulator or physical device using the Expo Go App!
+
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/license/mit/).
@@ -64,4 +68,3 @@ This project is licensed under the [MIT License](https://opensource.org/license/
 ## Contact
 
 If you have any questions or suggestions, feel free to contact me at mirelkorajac@gmail.com.
-
