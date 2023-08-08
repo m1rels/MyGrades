@@ -59,7 +59,7 @@ Contributions are welcome! If you'd like to contribute to MyGrades, please follo
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](https://opensource.org/license/mit/).
 
 ## Contact
 
