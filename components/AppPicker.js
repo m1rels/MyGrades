@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, TouchableOpacity, FlatList, TouchableWithoutFeedback } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, FlatList, TouchableWithoutFeedback } from 'react-native';
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 import AppText from './AppText';
 import CheckBoxModal from "./CheckBoxModal";
+import SubjectModal from './SubjectModal';
 
 function AppPicker({ title, data, setData, onSelectItem }) {
 
   const [modalVisible, setModalVisible] = useState("false");
   
   return (
-    <>
+    <View style={styles.component}>
         <TouchableOpacity style={styles.container} onPress={() => setModalVisible(true)}>
         <AppText>
             {title}
@@ -17,11 +18,14 @@ function AppPicker({ title, data, setData, onSelectItem }) {
         <MaterialCommunityIcons name='arrow-right' size={20} style={styles.icon} />
         </TouchableOpacity>
         <CheckBoxModal visible={modalVisible} onPress={() => setModalVisible(false)} title={title} data={data} setData={setData} onSelectItem={onSelectItem} closeModal={() => setModalVisible(false)} />
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  component: {
+    marginVertical: 30,
+  },
   container: {
     display: "flex",
     flexDirection: "row",
