@@ -1,34 +1,42 @@
-import React from 'react';
-import { Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import defaultStyles from "../config/styles";
+import AppText from "./AppText";
 
-function SubjectItem({borderColor, title, grade}) {
+function SubjectItem({ title, grade, color, editable }) {
   return (
-    <TouchableOpacity style={[styles.container, {borderColor: borderColor}]}>
-        <Text style={[defaultStyles.text, styles.text]}>{title}</Text>
-        <Text style={[defaultStyles.text, styles.text]}>{grade}</Text>
+    <TouchableOpacity style={styles.container}>
+      <View style={styles.title__container}>
+        <View style={[styles.label, { backgroundColor: color }]}></View>
+        <AppText style={[defaultStyles.text, styles.text]}>{title}</AppText>
+      </View>
+      <AppText style={[defaultStyles.text, styles.text]}>{grade}</AppText>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
-    backgroundColor: "#002395",
-    width: "100%",
-    height: 70,
-    borderRadius: 25,
-    borderWidth: 5,
     alignItems: "center",
-    paddingHorizontal: 25,
-    marginVertical: 7
+    justifyContent: "space-between",
+    backgroundColor: "#002366",
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    borderRadius: 25,
+    marginVertical: 10,
+  },
+  title__container: {
+    flexDirection: "row",
+    columnGap: 10,
   },
   text: {
-    fontSize: 18,
-    fontWeight: "900",
-  }
+    fontWeight: 700,
+  },
+  label: {
+    height: "auto",
+    width: 7,
+  },
 });
 
 export default SubjectItem;

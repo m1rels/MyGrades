@@ -1,11 +1,15 @@
-import React from 'react';
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import React from "react";
+import { StyleSheet, TouchableOpacity, Text } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import defaultStyles from "../config/styles";
 
-function ActiveButton({text, style}) {
+function ActiveButton({ text, style, onPress, size, icon, fontSize = 21 }) {
   return (
-    <TouchableOpacity style={[styles.container, style]}>
-        <Text style={ styles.text }>{text}</Text>
+    <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
+      {icon && <MaterialCommunityIcons name={icon} size={size} />}
+      {text && (
+        <Text style={[styles.text, { fontSize: fontSize }]}>{text}</Text>
+      )}
     </TouchableOpacity>
   );
 }
@@ -13,19 +17,17 @@ function ActiveButton({text, style}) {
 const styles = StyleSheet.create({
   container: {
     display: "flex",
-    justifyContent: "center",
+    flexDirection: "row",
     alignItems: "center",
-    width: "100%",
-    height: 40,
+    justifyContent: "center",
     backgroundColor: "#FFD700",
-    borderRadius: 25,
+    borderRadius: "100%",
   },
   text: {
-    fontSize: 21,
     color: "#002366",
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
-    fontWeight: "600"
-  }
+    fontWeight: "700",
+  },
 });
 
 export default ActiveButton;

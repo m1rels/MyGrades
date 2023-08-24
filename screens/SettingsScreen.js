@@ -1,32 +1,33 @@
-import React from 'react';
-import { View, StyleSheet, FlatList, Text } from 'react-native';
-import Screen from '../components/Screen';
-import SettingsContainer from '../components/SettingsContainer';
-import SettingsItem from '../components/SettingsItem';
+import React from "react";
+import { View, StyleSheet, FlatList, Text } from "react-native";
+import Screen from "../components/Screen";
+import SettingsContainer from "../components/SettingsContainer";
+import SettingsItem from "../components/SettingsItem";
 import defaultStyles from "../config/styles";
 
 function SettingsScreen(props) {
   return (
     <Screen>
-        <Text style={styles.title}>Profil</Text>
-        <SettingsContainer heading="Mirel Korajac">
-            <SettingsItem title="Profil" />
-        </SettingsContainer>
-        <SettingsContainer heading="10. Klasse">
-            <SettingsItem title="Schuljahr wechseln" />
-            <SettingsItem title="Bewertungssystem" />
-        </SettingsContainer>
-        <Text style={[defaultStyles.text, styles.subTitle]}>Links</Text>
-        <SettingsContainer>
-            <SettingsItem title="Hilfe" />
-            <SettingsItem title="Support kontaktieren" />
-            <SettingsItem title="Weiterempfehlen" />
-            <SettingsItem title="Bewerte uns" />
-        </SettingsContainer>
-        <SettingsContainer>
-            <SettingsItem title="Nutzungsbedingungen" />
-            <SettingsItem title="Datenschutzbestimmungen" />
-        </SettingsContainer>
+      <Text style={styles.title}>Profil</Text>
+      <SettingsContainer heading="Mirel Korajac">
+        <SettingsItem title="Profil" />
+      </SettingsContainer>
+      <SettingsContainer heading="10. Klasse">
+        <SettingsItem title="Schuljahr ändern" />
+        <SettingsItem title="Bewertungssystem" />
+        <SettingsItem title="Deine Fächer" />
+      </SettingsContainer>
+      <Text style={[defaultStyles.text, styles.subTitle]}>Links</Text>
+      <SettingsContainer>
+        <SettingsItem title="Hilfe" />
+        <SettingsItem title="Support kontaktieren" />
+        <SettingsItem title="Weiterempfehlen" />
+        <SettingsItem title="Bewerte uns" />
+      </SettingsContainer>
+      <SettingsContainer>
+        <SettingsItem title="Nutzungsbedingungen" />
+        <SettingsItem title="Datenschutzbestimmungen" />
+      </SettingsContainer>
     </Screen>
   );
 }
@@ -42,8 +43,8 @@ const styles = StyleSheet.create({
   subTitle: {
     fontWeight: "700",
     fontSize: 21,
-    marginTop: 10
-  }
+    marginTop: 10,
+  },
 });
 
 export default SettingsScreen;
