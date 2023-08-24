@@ -1,30 +1,70 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, StyleSheet, TouchableOpacity, FlatList, TouchableWithoutFeedback } from 'react-native';
-import {MaterialCommunityIcons} from "@expo/vector-icons";
-import AppText from './AppText';
+import React, { useState, useEffect, useRef } from "react";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+  TouchableWithoutFeedback,
+} from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import AppText from "./AppText";
 import CheckBoxModal from "./CheckBoxModal";
-import SubjectModal from './SubjectModal';
+import SubjectModal from "./SubjectModal";
 
-function AppPicker({ title, data, setData, onSelectItem }) {
+function AppPicker({
+  title,
+  data,
+  setData,
+  onSelectItem,
+  selectOne,
+  selectedItem,
+  subject,
+}) {
+  const [modalVisible, setModalVisible] = useState(false);
 
-  const [modalVisible, setModalVisible] = useState("false");
-  
+  console.log(selectedItem);
   return (
     <View style={styles.component}>
-        <TouchableOpacity style={styles.container} onPress={() => setModalVisible(true)}>
-        <AppText>
-            {title}
-        </AppText>
-        <MaterialCommunityIcons name='arrow-right' size={20} style={styles.icon} />
-        </TouchableOpacity>
-        <CheckBoxModal visible={modalVisible} onPress={() => setModalVisible(false)} title={title} data={data} setData={setData} onSelectItem={onSelectItem} closeModal={() => setModalVisible(false)} />
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() => setModalVisible(true)}
+      >
+        <AppText>{selectedItem ? selectedItem.text : title}</AppText>
+        <MaterialCommunityIcons
+          name="arrow-right"
+          size={20}
+          style={styles.icon}
+        />
+      </TouchableOpacity>
+      {subject ? (
+        <SubjectModal
+          visible={modalVisible}
+          title={title}
+          data={data}
+          setData={setData}
+          onPress={() => setModalVisible(false)}
+          selectOne={true} // Setze den Wert, je nachdem ob du die Möglichkeit der Mehrfachauswahl möchtest
+          closeModal={() => setModalVisible(false)}
+          onSelectItem={onSelectItem}
+        />
+      ) : (
+        <CheckBoxModal
+          visible={modalVisible}
+          onPress={() => setModalVisible(false)}
+          title={title}
+          data={data}
+          setData={setData}
+          closeModal={() => setModalVisible(false)}
+          onSelectItem={onSelectItem}
+        />
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   component: {
-    marginVertical: 30,
+    marginVertical: 10,
   },
   container: {
     display: "flex",
@@ -33,10 +73,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     backgroundColor: "#002395",
     padding: 15,
-    borderRadius: 25
+    borderRadius: 25,
   },
   icon: {
-    color: "#F0F8FF"
+    color: "#F0F8FF",
   },
   modal: {
     justifyContent: "flex-end",
@@ -44,7 +84,7 @@ const styles = StyleSheet.create({
     backgroundColor: "yellow",
     justifyContent: "flex-end",
     paddingHorizontal: 20,
-    paddingVertical: 40
+    paddingVertical: 40,
   },
 });
 

@@ -1,10 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, View, Text, StyleSheet, FlatList, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from "react";
+import {
+  Modal,
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+} from "react-native";
 import defaultStyles from "../config/styles";
-import AppCheckBox from './AppCheckBox';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AppCheckBox from "./AppCheckBox";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-function AppModal({ visible, onRequestClose, title, data, setData, onPress, closeModal, onSelectItem }) {
+function AppModal({
+  visible,
+  onRequestClose,
+  title,
+  data,
+  setData,
+  onPress,
+  closeModal,
+  onSelectItem,
+}) {
   const [contentHeight, setContentHeight] = useState(0);
 
   const handleContentLayout = (event) => {
@@ -12,37 +29,9 @@ function AppModal({ visible, onRequestClose, title, data, setData, onPress, clos
     setContentHeight(height);
   };
 
-  const loadCheckboxState = async () => {
-    try {
-      const storedData = await AsyncStorage.getItem('@checkboxData');
-      if (storedData !== null) {
-        setData(JSON.parse(storedData));
-      }
-    } catch (error) {
-      console.error('Error loading checkbox state:', error);
-    }
-  };
-
-  // Funktion zum Speichern des Zustands der Checkboxen im AsyncStorage
-  const saveCheckboxState = async () => {
-    try {
-      await AsyncStorage.setItem('@checkboxData', JSON.stringify(data));
-    } catch (error) {
-      console.error('Error saving checkbox state:', error);
-    }
-  };
-
-  useEffect(() => {
-    loadCheckboxState();
-  }, []);
-
-  useEffect(() => {
-    saveCheckboxState();
-  }, [data]);
-
   const handleCheckboxChange = (itemId) => {
     // Erstelle eine neue Datenkopie und aktualisiere den Zustand der Checkbox für das entsprechende Element
-    const newData = data.map(item => ({
+    const newData = data.map((item) => ({
       ...item,
       checked: item.id === itemId,
     }));
@@ -57,67 +46,66 @@ function AppModal({ visible, onRequestClose, title, data, setData, onPress, clos
 
   return (
     <>
-    
-    <Modal
-      visible={visible}
-      onRequestClose={onRequestClose}
-      transparent={true}
-      animationType='slide'
-    >
-      
-      <View style={styles.modalContainer}>
-      <TouchableOpacity onPress={onPress}>
-        <View style={styles.modalOutside}>
-
-        </View>
-      </TouchableOpacity>
-        <View
-          style={[styles.modalContent, { height: contentHeight > 0 ? contentHeight : 'auto' }]}
-          onLayout={handleContentLayout}
-        >
-        <Text style={[defaultStyles.text, styles.modalTitle]}>{title}</Text>
-        <FlatList 
-                  data={data}
-                  renderItem={({item}) => 
-                  <AppCheckBox 
-                    name={item.text} 
-                    onPress={() => {
-                      onSelectItem(item);
-                      closeModal();
-                      handleCheckboxChange(item.id);
+      <Modal
+        visible={visible}
+        onRequestClose={onRequestClose}
+        transparent={true}
+        animationType="slide"
+      >
+        <View style={styles.modalContainer}>
+          <TouchableOpacity onPress={onPress}>
+            <View style={styles.modalOutside}></View>
+          </TouchableOpacity>
+          <View
+            style={[
+              styles.modalContent,
+              { height: contentHeight > 0 ? contentHeight : "auto" },
+            ]}
+            onLayout={handleContentLayout}
+          >
+            <Text style={[defaultStyles.text, styles.modalTitle]}>{title}</Text>
+            <FlatList
+              data={data}
+              renderItem={({ item }) => (
+                <AppCheckBox
+                  name={item.text}
+                  onPress={() => {
+                    onSelectItem(item);
+                    closeModal();
+                    handleCheckboxChange(item.id);
                   }}
-                    value={item.checked}
-                    onValueChange={() => handleCheckboxChange(item.id)}
-                   />}
-                  keyExtractor={item => item.id}
-                  scrollEnabled="false"
-                  />
+                  value={item.checked}
+                  onValueChange={() => handleCheckboxChange(item.id)}
+                />
+              )}
+              keyExtractor={(item) => item.id}
+              scrollEnabled="false"
+            />
+          </View>
         </View>
-      </View>
-    </Modal>
+      </Modal>
     </>
   );
-};
+}
 
 const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
-    justifyContent: 'flex-end',
-    
+    justifyContent: "flex-end",
   },
   modalContent: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     padding: 20,
     borderRadius: 10,
-    backgroundColor: "#002395"
+    backgroundColor: "#002395",
   },
   modalTitle: {
     fontSize: 21,
-    fontWeight: 700
+    fontWeight: 700,
   },
   modalOutside: {
     height: "100%",
-  }
+  },
 });
 
 export default AppModal;

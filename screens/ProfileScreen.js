@@ -1,42 +1,95 @@
-import React from 'react';
-import { View, StyleSheet, Text, FlatList } from 'react-native';
-import Screen from '../components/Screen';
-import ActiveButton from '../components/ActiveButton';
-import defaultStyles from "../config/styles"
-import SettingsContainer from '../components/SettingsContainer';
-import SettingsItem from '../components/SettingsItem';
-import ProfileItem from '../components/ProfileItem';
+import React, { useState } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import Screen from "../components/Screen";
+import ActiveButton from "../components/ActiveButton";
+import { useFormikContext } from "formik";
 
-const settings = [
-  {
-    value: "mirelkorajac@gmail.com"
-  },
-  {
-    value: "060506mK"
-  }
+import * as Yup from "yup";
 
-]
+import { AppForm, AppFormField } from "../components/forms";
 
-function ProfileScreen(props) {
+const validationSchema = Yup.object().shape({
+  name: Yup.string().required().min(2).label("Name"),
+  email: Yup.string().required().email().label("Email"),
+  password: Yup.string().required().min(4).label("Password"),
+});
+
+function ProfileScreen() {
+  //const {handleSubmit} = useFormikContext();
+
+  const [editing, setEditing] = useState(false); // Zustand für den Bearbeitungsmodus
+
   return (
-    <Screen style={styles.container}>
-        <Text style={styles.title}>Profil</Text>
-        <View style={styles.profileContainer}>
-            <View style={styles.image}></View>
-            <Text style={[defaultStyles.text, styles.text]}>Mirel Korajac</Text>
+    <Screen>
+      <Text style={styles.title}>Profil</Text>
+      <AppForm
+        initialValues={{
+          name: "Mirel Korajac",
+          email: "mirelkorajac@gmail.com",
+          password: "060506mK",
+        }}
+        onSubmit={(values) => console.log(values)}
+        validationSchema={validationSchema}
+      >
+        <View style={styles.inputContainer}>
+          <AppFormField
+            placeholder="Name"
+            autoCapitalize="none"
+            autoCorrect={false}
+            icon="account"
+            name="name"
+            editable={editing}
+            placeholderTextColor="#c3cdca"
+            textColor="#FFD700"
+            fontSize={18}
+          />
+          <AppFormField
+            placeholder="Email"
+            autoCapitalize="none"
+            autoCorrect={false}
+            icon="email"
+            name="email"
+            textContentType="emailAddress"
+            keyBoardType="email-address"
+            editable={editing}
+            placeholderTextColor="#c3cdca"
+            textColor="#FFD700"
+            fontSize={18}
+          />
+          <AppFormField
+            placeholder="Passwort"
+            autoCapitalize="none"
+            autoCorrect={false}
+            icon="lock"
+            name="password"
+            secureTextEntry
+            textContentType="password"
+            editable={editing}
+            placeholderTextColor="#c3cdca"
+            textColor="#FFD700"
+            fontSize={18}
+          />
         </View>
-        <SettingsContainer>
-          <ProfileItem title="Email" text={settings[0].value} />
-          <ProfileItem title="Passwort" text={settings[1].value} />
-        </SettingsContainer>
-        <ActiveButton style={styles.button} text="Profil bearbeiten" />
+        {editing ? ( // Wenn im Bearbeitungsmodus
+          <ActiveButton text="Änderungen speichern" style={styles.button} />
+        ) : (
+          <ActiveButton
+            text="Bearbeiten"
+            style={styles.button}
+            onPress={() => setEditing(true)}
+          />
+        )}
+      </AppForm>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20
+    padding: 20,
+  },
+  inputContainer: {
+    marginVertical: 80,
   },
   title: {
     fontSize: 45,
@@ -46,23 +99,22 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 21,
-    fontWeight: "600"
+    fontWeight: "600",
   },
   image: {
     backgroundColor: "white",
     height: 150,
     width: 150,
     borderRadius: 75,
-    marginBottom: 20
   },
   profileContainer: {
     display: "flex",
     alignItems: "center",
-    marginVertical: 30
+    marginVertical: 20,
   },
   button: {
-    marginTop: 45,
-  }
+    marginVertical: 50,
+  },
 });
 
 export default ProfileScreen;

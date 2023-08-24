@@ -1,35 +1,52 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, TouchableOpacity, FlatList, View, Text, TouchableHighlight } from 'react-native';
-import {MaterialCommunityIcons} from "@expo/vector-icons";
-import AppText from './AppText';
+import React, { useState, useEffect, useRef } from "react";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+  View,
+  Text,
+  TouchableHighlight,
+} from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import AppText from "./AppText";
 import CheckBoxModal from "./CheckBoxModal";
-import SubjectModal from './SubjectModal';
+import SubjectModal from "./SubjectModal";
 import SelectedSubject from "./SelectedSubject";
 
-function SubjectPicker({ title, data, setData, selectedItems }) {
-
+function SubjectPicker({ title, data, setData, selectedItems, selectOne }) {
   const [modalVisible, setModalVisible] = useState("false");
-  
+
   return (
     <>
-        <View style={styles.container}>
-            <View style={styles.picker}>
-                <AppText>
-                    {title}
-                </AppText>
-                <TouchableHighlight style={styles.item} onPress={() => setModalVisible(true)}>
-                    <MaterialCommunityIcons name='plus' size={40} />
-                </TouchableHighlight>
-            </View>
-            <View style={styles.listContainer}>
-                <FlatList 
-                    data={selectedItems}
-                    renderItem={({ item }) => <SelectedSubject name={item.text} color={item.color} />}
-                    keyExtractor={(item) => item.id.toString()}
-                />
-            </View>
+      <View style={styles.container}>
+        <View style={styles.picker}>
+          <AppText>{title}</AppText>
+          <TouchableHighlight
+            style={styles.item}
+            onPress={() => setModalVisible(true)}
+          >
+            <MaterialCommunityIcons name="plus" size={40} />
+          </TouchableHighlight>
         </View>
-        <SubjectModal visible={modalVisible} onPress={() => setModalVisible(false)}  title={title} data={data} setData={setData} />
+        <View style={styles.listContainer}>
+          <FlatList
+            data={selectedItems}
+            renderItem={({ item }) => (
+              <SelectedSubject name={item.text} color={item.color} />
+            )}
+            keyExtractor={(item) => item.id.toString()}
+          />
+        </View>
+      </View>
+      <SubjectModal
+        visible={modalVisible}
+        onPress={() => setModalVisible(false)}
+        title={title}
+        data={data}
+        setData={setData}
+        selectOne={selectOne}
+        closeModal={() => setModalVisible(false)}
+      />
     </>
   );
 }
@@ -38,10 +55,11 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#002395",
     padding: 15,
-    borderRadius: 25
+    borderRadius: 25,
+    marginVertical: 10,
   },
   icon: {
-    color: "#F0F8FF"
+    color: "#F0F8FF",
   },
   modal: {
     justifyContent: "flex-end",
@@ -49,7 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: "yellow",
     justifyContent: "flex-end",
     paddingHorizontal: 20,
-    paddingVertical: 40
+    paddingVertical: 40,
   },
   item: {
     backgroundColor: "#FFD700",
@@ -64,8 +82,8 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     marginTop: 10,
-    maxHeight: 140
-  }
+    maxHeight: 140,
+  },
 });
 
 export default SubjectPicker;
