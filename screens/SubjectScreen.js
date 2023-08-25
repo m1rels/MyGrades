@@ -41,7 +41,7 @@ const subjects = [
     }
 ]
 
-function SubjectScreen(props) {
+function SubjectScreen({ navigation }) {
   return (
     <Screen>
         <Text style={styles.title_1}>Meine</Text>
@@ -49,7 +49,7 @@ function SubjectScreen(props) {
         <FlatList 
         data={subjects}
         keyExtractor={subject => subject.name}
-        renderItem={({item}) => <SubjectItem title={item.name} grade={item.grade} color={item.color} bgColor="#002395"/>}/>
+        renderItem={({item}) => <SubjectItem title={item.name} grade={item.grade} color={item.color} bgColor="#002395" onPress={() => navigation.navigate("Subject", item)} />}/>
     </Screen>
   );
 }
