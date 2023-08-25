@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
   },
   icon: {},
   input: {
-    paddingLeft: 15,
     fontWeight: "500",
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
   },

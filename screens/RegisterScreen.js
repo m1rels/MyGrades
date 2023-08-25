@@ -13,15 +13,19 @@ const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
 });
 
-function RegisterScreen(props) {
+function RegisterScreen({ navigation }) {
   return (
     <Screen style={styles.container}>
-      <Text style={styles.title}>Register</Text>
-      <Image source={require("../assets/infinity.png")} style={styles.image} />
-      <AppText>
-        Registriere dich, indem du deinen Namen, Email sowie ein Passwort
-        angibst.
-      </AppText>
+      <View style={styles.header}>
+        <Image
+          source={require("../assets/infinity.png")}
+          style={styles.image}
+        />
+        <AppText style={styles.subTitle}>
+          Registriere dich, indem du deinen Namen, Email sowie ein Passwort
+          angibst.
+        </AppText>
+      </View>
       <AppForm
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => console.log(values)}
@@ -53,7 +57,7 @@ function RegisterScreen(props) {
             textContentType="password"
           />
         </View>
-        <SubmitButton title="Register" />
+        <SubmitButton title="Register" onPress={() => navigation.navigate("SetUp")} />
       </AppForm>
     </Screen>
   );
@@ -63,18 +67,18 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
   },
-  title: {
-    fontSize: 45,
-    color: "#FFD700",
-    fontWeight: "700",
-    fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
-  },
   image: {
     height: 112,
     width: 112,
   },
   inputContainer: {
     marginVertical: 50,
+  },
+  header: {
+    alignItems: "center",
+  },
+  subTitle: {
+    textAlign: "center",
   },
 });
 

@@ -15,9 +15,15 @@ const validationSchema = Yup.object().shape({
 function LoginScreen(props) {
   return (
     <Screen style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <Image source={require("../assets/infinity.png")} style={styles.image} />
-      <AppText>Logge dich mit deiner Email und deinem Passwort ein.</AppText>
+      <View style={styles.header}>
+        <Image
+          source={require("../assets/infinity.png")}
+          style={styles.image}
+        />
+        <AppText style={styles.slogan}>
+          Logge dich mit deiner Email und deinem Passwort ein.
+        </AppText>
+      </View>
       <AppForm
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => console.log(values)}
@@ -53,18 +59,18 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
   },
-  title: {
-    fontSize: 45,
-    color: "#FFD700",
-    fontWeight: "700",
-    fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
-  },
   image: {
     height: 112,
     width: 112,
   },
   inputContainer: {
     marginVertical: 50,
+  },
+  header: {
+    alignItems: "center",
+  },
+  subTitle: {
+    textAlign: "center",
   },
 });
 

@@ -5,7 +5,7 @@ import AppButton from "../components/AppButton";
 import defaultStyles from "../config/styles";
 import Screen from "../components/Screen";
 
-function WelcomeScreen(props) {
+function WelcomeScreen({ navigation }) {
   return (
     <Screen>
       <View style={styles.container}>
@@ -17,8 +17,8 @@ function WelcomeScreen(props) {
           </Text>
         </View>
         <View style={styles.buttonContainer}>
-          <AppButton buttonText="Login" />
-          <AppButton buttonText="Register" />
+          <AppButton buttonText="Login" onPress={() => navigation.navigate("Login")} />
+          <AppButton buttonText="Register" onPress={() => navigation.navigate("Register")} />
         </View>
       </View>
     </Screen>
@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonContainer: {
-    paddingHorizontal: 20,
     width: "100%",
     marginVertical: 70,
   },

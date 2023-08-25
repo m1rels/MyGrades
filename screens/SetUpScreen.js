@@ -8,6 +8,7 @@ import SubjectFormPicker from "../components/forms/SubjectFormPicker";
 import SubjectPicker from "../components/SubjectPicker";
 import AppFormPicker from "../components/forms/AppFormPicker";
 import Button from "../components/AppButton";
+import AppText from "../components/AppText";
 import AppPicker from "../components/AppPicker";
 
 const validationSchema = Yup.object().shape({
@@ -47,14 +48,13 @@ function SetUpScreen(props) {
 
   return (
     <Screen>
-      <Text style={styles.title}>Erstelle</Text>
-      <Text style={styles.title}>dein Profil</Text>
       <View style={styles.form}>
         <AppForm
           initialValues={{ class: "", gradeSystem: null, subjects: null }}
           onSubmit={(values) => console.log(values)}
           validationSchema={validationSchema}
         >
+          <AppText>Gib deine Klasse ein.</AppText>
           <AppFormField
             placeholder="Klasse"
             keyBoardType="numeric"
@@ -62,12 +62,14 @@ function SetUpScreen(props) {
             width={125}
             autoCorrect={false}
           />
+          <AppText>Stelle dein Notensystem ein.</AppText>
           <AppFormPicker
             title="Notensystem"
             name="gradeSystem"
             data={grades}
             setData={setGrades}
           />
+          <AppText>Wähle deine Fächer aus.</AppText>
           <SubjectFormPicker
             title="Fächer"
             name="subjects"
@@ -90,8 +92,6 @@ const styles = StyleSheet.create({
     color: "#FFD700",
   },
   button: {
-    flex: 1,
-    justifyContent: "flex-end",
     marginVertical: 70,
   },
   form: {
