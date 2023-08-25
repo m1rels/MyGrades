@@ -58,6 +58,7 @@ function HomeScreen(props) {
     <Screen>
       <Text style={styles.title}>Hallo, Mirel!</Text>
       <View style={styles.container}>
+        <View style={styles.header}>
         <AppText style={styles.subTitle}>Dein Notenschnitt</AppText>
         <Text style={styles.gradeText}>Ø 2,33</Text>
         <ActiveButton
@@ -70,9 +71,10 @@ function HomeScreen(props) {
           }}
           style={styles.button_container}
         />
+        </View>
         <Modal visible={modalVisible} animationType="slide">
           <Screen>
-            <View style={styles.header}>
+            <View style={styles.buttonModal}>
               <ActiveButton
                 icon="close"
                 size={40}
@@ -157,6 +159,7 @@ function HomeScreen(props) {
                 title={item.text}
                 grade={item.grade}
                 color={item.color}
+                bgColor="#002366"
                 onPress={() => {
                   handleCheckboxChange(item.id);
                 }}
@@ -175,9 +178,7 @@ function HomeScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
-    alignItems: "center",
-    marginVertical: 50,
+    marginVertical: 70
   },
   button_container: {
     maxWidth: 250,
@@ -217,7 +218,7 @@ const styles = StyleSheet.create({
   list__title: {
     paddingBottom: 10,
   },
-  header: {
+  buttonModal: {
     display: "flex",
     alignItems: "flex-end",
   },
@@ -236,6 +237,9 @@ const styles = StyleSheet.create({
   button: {
     marginVertical: 50,
   },
+  header: {
+    alignItems:"center"
+  }
 });
 
 export default HomeScreen;

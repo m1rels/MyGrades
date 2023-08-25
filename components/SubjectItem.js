@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import defaultStyles from "../config/styles";
 import AppText from "./AppText";
 
-function SubjectItem({ title, grade, color, editable }) {
+function SubjectItem({ title, grade, color, bgColor }) {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={[styles.container, { backgroundColor: bgColor }]}>
       <View style={styles.title__container}>
         <View style={[styles.label, { backgroundColor: color }]}></View>
         <AppText style={[defaultStyles.text, styles.text]}>{title}</AppText>
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: "#002366",
+    backgroundColor: "#002395",
     paddingHorizontal: 20,
     paddingVertical: 15,
     borderRadius: 25,

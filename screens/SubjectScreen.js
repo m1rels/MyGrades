@@ -49,7 +49,7 @@ function SubjectScreen(props) {
         <FlatList 
         data={subjects}
         keyExtractor={subject => subject.name}
-        renderItem={({item}) => <SubjectItem title={item.name} grade={item.grade} borderColor={item.color}/>}/>
+        renderItem={({item}) => <SubjectItem title={item.name} grade={item.grade} color={item.color} bgColor="#002395"/>}/>
     </Screen>
   );
 }
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     color: "#FFD700"
   },
   title_2: {
-    fontSize: 45,
+    fontSize: 36,
     color: "#FFD700",
     marginBottom: 20
 }

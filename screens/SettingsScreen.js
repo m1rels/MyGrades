@@ -8,7 +8,7 @@ import defaultStyles from "../config/styles";
 function SettingsScreen(props) {
   return (
     <Screen>
-      <Text style={styles.title}>Profil</Text>
+      <Text style={styles.title}>Einstellungen</Text>
       <SettingsContainer heading="Mirel Korajac">
         <SettingsItem title="Profil" />
       </SettingsContainer>
@@ -35,7 +35,7 @@ function SettingsScreen(props) {
 const styles = StyleSheet.create({
   container: {},
   title: {
-    fontSize: 45,
+    fontSize: 36,
     color: "#FFD700",
     fontWeight: "700",
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
