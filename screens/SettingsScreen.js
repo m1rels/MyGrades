@@ -5,12 +5,12 @@ import SettingsContainer from "../components/SettingsContainer";
 import SettingsItem from "../components/SettingsItem";
 import defaultStyles from "../config/styles";
 
-function SettingsScreen(props) {
+function SettingsScreen({ navigation }) {
   return (
     <Screen>
       <Text style={styles.title}>Einstellungen</Text>
       <SettingsContainer heading="Mirel Korajac">
-        <SettingsItem title="Profil" />
+        <SettingsItem title="Profil" onPress={() => navigation.navigate("Profile")} />
       </SettingsContainer>
       <SettingsContainer heading="10. Klasse">
         <SettingsItem title="Schuljahr ändern" />
