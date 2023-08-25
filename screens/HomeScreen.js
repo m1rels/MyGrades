@@ -26,24 +26,24 @@ const validationSchema = Yup.object().shape({
   note: Yup.string().label("Note"),
 });
 
-function HomeScreen(props) {
+function HomeScreen({ navigation }) {
   const [subjects, setSubjects] = useState([
-    { id: 1, text: "Mathe", color: "blue", checked: false, grade: 1.3 },
-    { id: 2, text: "Deutsch", color: "orange", checked: false, grade: 1.3 },
-    { id: 3, text: "Englisch", color: "green", checked: false, grade: 1.3 },
-    { id: 4, text: "Französisch", color: "blue", checked: false, grade: 1.3 },
-    { id: 5, text: "Latein", color: "orange", checked: false, grade: 1.3 },
-    { id: 6, text: "Spanisch", color: "orange", checked: false, grade: 1.3 },
-    { id: 7, text: "Physik", color: "orange", checked: false, grade: 1.3 },
-    { id: 8, text: "Biologie", color: "green", checked: false, grade: 1.3 },
-    { id: 9, text: "Chemie", color: "blue", checked: false, grade: 1.3 },
-    { id: 10, text: "Geographie", color: "brown", checked: false, grade: 1.3 },
-    { id: 12, text: "Geschichte", color: "orange", checked: false, grade: 1.3 },
-    { id: 13, text: "Sport", color: "blue", checked: false, grade: 1.3 },
-    { id: 14, text: "Musik", color: "prurple", checked: false, grade: 1.3 },
-    { id: 15, text: "Kunst", color: "yellow", checked: false, grade: 1.3 },
-    { id: 16, text: "Religion", color: "pink", checked: false, grade: 1.3 },
-    { id: 17, text: "Ethik", color: "purple", checked: false, grade: 1.3 },
+    { id: 1, name: "Mathe", color: "blue", checked: false, grade: 1.3 },
+    { id: 2, name: "Deutsch", color: "orange", checked: false, grade: 1.3 },
+    { id: 3, name: "Englisch", color: "green", checked: false, grade: 1.3 },
+    { id: 4, name: "Französisch", color: "blue", checked: false, grade: 1.3 },
+    { id: 5, name: "Latein", color: "orange", checked: false, grade: 1.3 },
+    { id: 6, name: "Spanisch", color: "orange", checked: false, grade: 1.3 },
+    { id: 7, name: "Physik", color: "orange", checked: false, grade: 1.3 },
+    { id: 8, name: "Biologie", color: "green", checked: false, grade: 1.3 },
+    { id: 9, name: "Chemie", color: "blue", checked: false, grade: 1.3 },
+    { id: 10, name: "Geographie", color: "brown", checked: false, grade: 1.3 },
+    { id: 12, name: "Geschichte", color: "orange", checked: false, grade: 1.3 },
+    { id: 13, name: "Sport", color: "blue", checked: false, grade: 1.3 },
+    { id: 14, name: "Musik", color: "prurple", checked: false, grade: 1.3 },
+    { id: 15, name: "Kunst", color: "yellow", checked: false, grade: 1.3 },
+    { id: 16, name: "Religion", color: "pink", checked: false, grade: 1.3 },
+    { id: 17, name: "Ethik", color: "purple", checked: false, grade: 1.3 },
     // Weitere Elemente hinzufügen...
   ]);
 
@@ -156,15 +156,13 @@ function HomeScreen(props) {
             data={subjects}
             renderItem={({ item }) => (
               <SubjectItem
-                title={item.text}
+                title={item.name}
                 grade={item.grade}
                 color={item.color}
                 bgColor="#002366"
                 onPress={() => {
-                  handleCheckboxChange(item.id);
+                  navigation.navigate("Subject", item)
                 }}
-                value={item.checked}
-                onValueChange={() => handleCheckboxChange(item.id)}
               />
             )}
             keyExtractor={(item) => item.id}

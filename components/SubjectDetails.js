@@ -3,12 +3,12 @@ import { View, StyleSheet, Text } from "react-native";
 import GradeItem from "./GradeItem";
 import defaultStyles from "../config/styles";
 
-function SubjectDetails() {
+function SubjectDetails({ subject, grade }) {
   return (
     <>
       <View style={styles.header}>
-        <Text style={[defaultStyles.text, styles.text]}>Mathe</Text>
-        <Text style={[defaultStyles.text, styles.text]}>~2,1</Text>
+        <Text style={[defaultStyles.text, styles.text]}>{subject}</Text>
+        <Text style={[defaultStyles.text, styles.text]}>{grade}</Text>
       </View>
       <View style={styles.container}>
         <Text style={[defaultStyles.text, styles.subHeading]}>Prüfungen</Text>

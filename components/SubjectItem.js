@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import defaultStyles from "../config/styles";
 import AppText from "./AppText";
 
-function SubjectItem({ title, grade, color, bgColor }) {
+function SubjectItem({ title, grade, color, bgColor, onPress }) {
   return (
-    <TouchableOpacity style={[styles.container, { backgroundColor: bgColor }]}>
+    <TouchableOpacity style={[styles.container, { backgroundColor: bgColor }]} onPress={onPress} >
       <View style={styles.title__container}>
         <View style={[styles.label, { backgroundColor: color }]}></View>
         <AppText style={[defaultStyles.text, styles.text]}>{title}</AppText>

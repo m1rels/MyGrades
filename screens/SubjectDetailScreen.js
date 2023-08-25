@@ -24,24 +24,24 @@ const validationSchema = Yup.object().shape({
   note: Yup.string().label("Note"),
 });
 
-function SubjectDetailScreen(props) {
+function SubjectDetailScreen({ route }) {
   const [subjects, setSubjects] = useState([
-    { id: 1, text: "Mathe", color: "blue", checked: false, grade: 1.3 },
-    { id: 2, text: "Deutsch", color: "orange", checked: false, grade: 1.3 },
-    { id: 3, text: "Englisch", color: "green", checked: false, grade: 1.3 },
-    { id: 4, text: "Französisch", color: "blue", checked: false, grade: 1.3 },
-    { id: 5, text: "Latein", color: "orange", checked: false, grade: 1.3 },
-    { id: 6, text: "Spanisch", color: "orange", checked: false, grade: 1.3 },
-    { id: 7, text: "Physik", color: "orange", checked: false, grade: 1.3 },
-    { id: 8, text: "Biologie", color: "green", checked: false, grade: 1.3 },
-    { id: 9, text: "Chemie", color: "blue", checked: false, grade: 1.3 },
-    { id: 10, text: "Geographie", color: "brown", checked: false, grade: 1.3 },
-    { id: 12, text: "Geschichte", color: "orange", checked: false, grade: 1.3 },
-    { id: 13, text: "Sport", color: "blue", checked: false, grade: 1.3 },
-    { id: 14, text: "Musik", color: "prurple", checked: false, grade: 1.3 },
-    { id: 15, text: "Kunst", color: "yellow", checked: false, grade: 1.3 },
-    { id: 16, text: "Religion", color: "pink", checked: false, grade: 1.3 },
-    { id: 17, text: "Ethik", color: "purple", checked: false, grade: 1.3 },
+    { id: 1, name: "Mathe", color: "blue", checked: false, grade: 1.3 },
+    { id: 2, name: "Deutsch", color: "orange", checked: false, grade: 1.3 },
+    { id: 3, name: "Englisch", color: "green", checked: false, grade: 1.3 },
+    { id: 4, name: "Französisch", color: "blue", checked: false, grade: 1.3 },
+    { id: 5, name: "Latein", color: "orange", checked: false, grade: 1.3 },
+    { id: 6, name: "Spanisch", color: "orange", checked: false, grade: 1.3 },
+    { id: 7, name: "Physik", color: "orange", checked: false, grade: 1.3 },
+    { id: 8, name: "Biologie", color: "green", checked: false, grade: 1.3 },
+    { id: 9, name: "Chemie", color: "blue", checked: false, grade: 1.3 },
+    { id: 10, name: "Geographie", color: "brown", checked: false, grade: 1.3 },
+    { id: 12, name: "Geschichte", color: "orange", checked: false, grade: 1.3 },
+    { id: 13, name: "Sport", color: "blue", checked: false, grade: 1.3 },
+    { id: 14, name: "Musik", color: "prurple", checked: false, grade: 1.3 },
+    { id: 15, name: "Kunst", color: "yellow", checked: false, grade: 1.3 },
+    { id: 16, name: "Religion", color: "pink", checked: false, grade: 1.3 },
+    { id: 17, name: "Ethik", color: "purple", checked: false, grade: 1.3 },
     // Weitere Elemente hinzufügen...
   ]);
 
@@ -51,14 +51,11 @@ function SubjectDetailScreen(props) {
   ]);
 
   const [modalVisible, setModalVisible] = useState(false);
+  const subject = route.params;
 
   return (
     <Screen>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.button}>
-          <MaterialCommunityIcons name="chevron-left" size={20} />
-          <Text>Zurück</Text>
-        </TouchableOpacity>
         <TouchableOpacity
           style={styles.icon}
           onPress={() => setModalVisible(true)}
@@ -66,7 +63,7 @@ function SubjectDetailScreen(props) {
           <MaterialCommunityIcons name="plus" size={40} />
         </TouchableOpacity>
       </View>
-      <SubjectDetails />
+      <SubjectDetails subject={subject.name} grade={subject.grade} />
       <Modal visible={modalVisible} animationType="slide">
         <Screen>
           <View style={styles.header}>
@@ -151,7 +148,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
   },
   button: {
     backgroundColor: "#FFD700",
