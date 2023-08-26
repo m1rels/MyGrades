@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import defaultStyles from "../config/styles";
 import AppCheckBox from "./AppCheckBox";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function AppModal({
   visible,
