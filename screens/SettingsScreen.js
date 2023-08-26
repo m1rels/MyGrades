@@ -105,7 +105,7 @@ function SettingsScreen({ navigation }) {
                 </View>
                 </Modal>
         <SettingsItem title="Bewertungssystem" />
-        <SettingsItem title="Neues Schuljahr anlegen" />
+        <SettingsItem title="Schuljahr wechseln" />
       </SettingsContainer>
       <Text style={[defaultStyles.text, styles.subTitle]}>Links</Text>
       <SettingsContainer>

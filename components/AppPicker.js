@@ -22,7 +22,6 @@ function AppPicker({
 }) {
   const [modalVisible, setModalVisible] = useState(false);
 
-  console.log(selectedItem);
   return (
     <View style={styles.component}>
       <TouchableOpacity
