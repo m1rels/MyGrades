@@ -5,9 +5,9 @@ export default {
     colors: {
         ...DefaultTheme.colors,
         primary: "#FFD700",
-        text: "#F0F8FF",
+        text: "#FFD700",
         card: "#002366",
-        border: "transparent"
+        border: "transparent",
     }
 }
 

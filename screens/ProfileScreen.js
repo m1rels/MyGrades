@@ -21,7 +21,6 @@ function ProfileScreen() {
 
   return (
     <Screen>
-      <Text style={styles.title}>Profil</Text>
       <AppForm
         initialValues={{
           name: "Mirel Korajac",
@@ -71,7 +70,7 @@ function ProfileScreen() {
           />
         </View>
         {editing ? ( // Wenn im Bearbeitungsmodus
-          <ActiveButton text="Änderungen speichern" style={styles.button} />
+          <ActiveButton text="Änderungen speichern" style={styles.button} onPress={() => setEditing(false)} />
         ) : (
           <ActiveButton
             text="Bearbeiten"
@@ -114,6 +113,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginVertical: 50,
+    padding: 10
   },
 });
 
