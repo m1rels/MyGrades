@@ -2,10 +2,10 @@ import React from "react";
 import { TouchableOpacity, StyleSheet } from "react-native";
 import AppText from "./AppText";
 
-function WeightItem({ title, weightNumber, percentage }) {
+function WeightItem({ title, weightNumber, percentage, onPress }) {
 
     return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress} >
         <AppText>{title}</AppText>
         <AppText><AppText style={{color: "#c3cdca", fontSize: 14}} >{percentage}</AppText> <AppText style={{color: "#FFD700", fontWeight: 700}} >{weightNumber}</AppText>x</AppText>
     </TouchableOpacity>
