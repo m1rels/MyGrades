@@ -24,11 +24,12 @@ export default function ExamWeightScreen() {
     "Abfrage": { title: "Abfrage", weightNumber: "1" },
     // ... Weitere Items
   });
+  const [selectedModalItem, setSelectedModalItem] = useState(null);
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, selectedModalItem) => {
     setSelectedItems((prevSelectedItems) => ({
       ...prevSelectedItems,
-      [itemTitle]: {
+      [selectedModalItem]: {
         title: values.examType,
         weightNumber: values.weight,
       },
@@ -45,95 +46,78 @@ export default function ExamWeightScreen() {
           <ActiveButton icon="plus" size={40} />
         </View>
         <SettingsContainer>
-        <WeightItem title={selectedItem ? selectedItem.title : "Kleiner Leistungsnachweis"} weightNumber={selectedItem ? selectedItem.weightNumber : "1"} percentage="50.00%" onPress={() => {
+        <WeightItem title={selectedItems["Kleiner Leistungsnachweis"].title} weightNumber={selectedItems["Kleiner Leistungsnachweis"].weightNumber} percentage="50.00%" onPress={() => {
           setModalVisible(true);
           setShowSettingsContainer(true);
-          setSelectedItem({
-            title: "Kleiner Leistungsnachweis",
-            weightNumber: "1",
-          });
+          setSelectedModalItem("Kleiner Leistungsnachweis");
         }} />
-       <ExamTypeModal visible={modalVisible} onPress={() => setModalVisible(false)} showSettingsContainer={showSettingsContainer} selectedItem={selectedItem} handleSubmit={handleSubmit} />
-          <SettingsItem
-            title={selectedItem ? selectedItem.title : "Mündliche Note"}
+       <ExamTypeModal visible={modalVisible} onPress={() => setModalVisible(false)} showSettingsContainer={showSettingsContainer} selectedItem={selectedItems[selectedModalItem]} handleSubmit={(values) => handleSubmit(values, selectedModalItem)} />
+       <SettingsItem
+            title={selectedItems["Mündliche Note"].title}
             fontSize={16}
             weight={true}
-            weightNumber="1"
+            weightNumber={selectedItems["Mündliche Note"].weightNumber}
             fontWeight={400}
             onPress={() => {
               setModalVisible(true);
               setShowSettingsContainer(false);
-              setSelectedItem({
-                title: "Mündliche Note",
-                weightNumber: "1",
-              });
+              setSelectedModalItem("Mündliche Note");
             }}
           />
           <SettingsItem
-            title={selectedItem ? selectedItem.title : "Abfrage"}
+            title={selectedItems["Abfrage"].title}
             fontSize={16}
             weight={true}
-            weightNumber="1"
+            weightNumber={selectedItems["Abfrage"].weightNumber}
             fontWeight={400}
             onPress={() => {
               setModalVisible(true)
               setShowSettingsContainer(false);
-              setSelectedItem({
-                title: "Abfrage",
-                weightNumber: "1",
-              });
+              setSelectedModalItem("Abfrage");
             }}
           />
           <SettingsItem
-            title={selectedItem ? selectedItem.title : "Stegreifaufgabe"}
+            title={selectedItems["Stegreifaufgabe"].title}
             fontSize={16}
             weight={true}
-            weightNumber="1"
+            weightNumber={selectedItems["Stegreifaufgabe"].weightNumber}
             fontWeight={400}
             onPress={() => {
               setModalVisible(true)
               setShowSettingsContainer(false)
-              setSelectedItem({
-                title: "Stegreifaufgabe",
-                weightNumber: "1",
-              });
+              setSelectedModalItem("Stegreifaufgabe");
             }}
           />
           <SettingsItem
-            title={selectedItem ? selectedItem.title : "Kleiner angekündigter Leistungsnachweis"}
+            title={selectedItems["Kleiner angekündigter Leistungsnachweis"].title}
             fontSize={16}
             weight={true}
-            weightNumber="1"
+            weightNumber={selectedItems["Kleiner angekündigter Leistungsnachweis"].weightNumber}
             fontWeight={400}
             onPress={() => {
               setModalVisible(true)
               setShowSettingsContainer(false)
+              setSelectedModalItem("Kleiner angekündigter Leistungsnachweis");
             }}
           />
           <SettingsItem
-            title={selectedItem ? selectedItem.title : "Referat"}
+            title={selectedItems["Referat"].title}
             fontSize={16}
             weight={true}
-            weightNumber="1"
+            weightNumber={selectedItems["Referat"].weightNumber}
             fontWeight={400}
             onPress={() => {
               setModalVisible(true)
               setShowSettingsContainer(false)
-              setSelectedItem({
-                title: "Referat",
-                weightNumber: "1",
-              });
+              setSelectedModalItem("Referat");
             }}
           />
         </SettingsContainer>
         <SettingsContainer>
-          <WeightItem title={selectedItem ? selectedItem.title : "Klausur"} weightNumber="1" percentage="50.00%" onPress={() => {
+          <WeightItem title={selectedItems["Klausur"].title} weightNumber={selectedItems["Klausur"].weightNumber} percentage="50.00%" onPress={() => {
             setModalVisible(true);
             setShowSettingsContainer(true);
-            setSelectedItem({
-              title: "Klausur",
-              weightNumber: "1",
-            });
+            setSelectedModalItem("Klausur");
           }} />
         </SettingsContainer>
       </View>
@@ -165,7 +149,7 @@ export default function ExamWeightScreen() {
             </View>
           </View>
         </Collapsible>
-      </SettingsContainer>
+      </SettingsContainer> 
     </Screen>
   );
 }
