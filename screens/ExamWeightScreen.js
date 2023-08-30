@@ -25,6 +25,7 @@ export default function ExamWeightScreen() {
     // ... Weitere Items
   });
   const [selectedModalItem, setSelectedModalItem] = useState(null);
+  const [newExamType, setNewExamType] = useState(false);
 
   const handleSubmit = (values, selectedModalItem) => {
     setSelectedItems((prevSelectedItems) => ({
@@ -43,15 +44,21 @@ export default function ExamWeightScreen() {
       <View>
         <View style={styles.selector}>
           <AppText style={styles.subTitle}>Prüfungsarten</AppText>
-          <ActiveButton icon="plus" size={40} />
+          <ActiveButton icon="plus" size={40} onPress={() => {
+            setModalVisible(true);
+            setNewExamType(true);
+            setShowSettingsContainer(true);
+            setSelectedModalItem(null);
+          }}  />
         </View>
         <SettingsContainer>
         <WeightItem title={selectedItems["Kleiner Leistungsnachweis"].title} weightNumber={selectedItems["Kleiner Leistungsnachweis"].weightNumber} percentage="50.00%" onPress={() => {
           setModalVisible(true);
           setShowSettingsContainer(true);
           setSelectedModalItem("Kleiner Leistungsnachweis");
+          setNewExamType(false);
         }} />
-       <ExamTypeModal visible={modalVisible} onPress={() => setModalVisible(false)} showSettingsContainer={showSettingsContainer} selectedItem={selectedItems[selectedModalItem]} handleSubmit={(values) => handleSubmit(values, selectedModalItem)} />
+       <ExamTypeModal visible={modalVisible} onPress={() => setModalVisible(false)} showSettingsContainer={showSettingsContainer} selectedItem={selectedItems[selectedModalItem]} handleSubmit={(values) => handleSubmit(values, selectedModalItem)} newExamType={newExamType} />
        <SettingsItem
             title={selectedItems["Mündliche Note"].title}
             fontSize={16}
@@ -62,6 +69,7 @@ export default function ExamWeightScreen() {
               setModalVisible(true);
               setShowSettingsContainer(false);
               setSelectedModalItem("Mündliche Note");
+              setNewExamType(false);
             }}
           />
           <SettingsItem
@@ -74,6 +82,7 @@ export default function ExamWeightScreen() {
               setModalVisible(true)
               setShowSettingsContainer(false);
               setSelectedModalItem("Abfrage");
+              setNewExamType(false);
             }}
           />
           <SettingsItem
@@ -86,6 +95,7 @@ export default function ExamWeightScreen() {
               setModalVisible(true)
               setShowSettingsContainer(false)
               setSelectedModalItem("Stegreifaufgabe");
+              setNewExamType(false);
             }}
           />
           <SettingsItem
@@ -98,6 +108,7 @@ export default function ExamWeightScreen() {
               setModalVisible(true)
               setShowSettingsContainer(false)
               setSelectedModalItem("Kleiner angekündigter Leistungsnachweis");
+              setNewExamType(false);
             }}
           />
           <SettingsItem
@@ -110,6 +121,7 @@ export default function ExamWeightScreen() {
               setModalVisible(true)
               setShowSettingsContainer(false)
               setSelectedModalItem("Referat");
+              setNewExamType(false);
             }}
           />
         </SettingsContainer>
@@ -118,6 +130,7 @@ export default function ExamWeightScreen() {
             setModalVisible(true);
             setShowSettingsContainer(true);
             setSelectedModalItem("Klausur");
+            setNewExamType(true);
           }} />
         </SettingsContainer>
       </View>

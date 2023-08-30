@@ -18,7 +18,7 @@ const validationSchema = Yup.object().shape({
     .label("Weight"),
 });
 
-function ExamTypeModal({ onPress, visible, showSettingsContainer, selectedItem, handleSubmit }) {
+function ExamTypeModal({ onPress, visible, showSettingsContainer, selectedItem, handleSubmit, newExamType }) {
     
     const examTypeInitialValue = selectedItem ? selectedItem.title : "";
   const weightInitialValue = selectedItem ? selectedItem.weightNumber : "";
@@ -28,7 +28,7 @@ function ExamTypeModal({ onPress, visible, showSettingsContainer, selectedItem, 
       <Screen>
         <View style={styles.selector}>
           <View>
-            <Text style={styles.title_1}>Ändere</Text>
+            {newExamType ? <Text style={styles.title_1}>Erstelle</Text> : <Text style={styles.title_1}>Ändere</Text>}
             <Text style={styles.title_2}>Prüfungsart</Text>
           </View>
           <View>
@@ -59,6 +59,7 @@ function ExamTypeModal({ onPress, visible, showSettingsContainer, selectedItem, 
           {showSettingsContainer && (
             <SettingsContainer>
               <AppText style={styles.subTitle}>Unter-Prüfungsarten</AppText>
+              
               <WeightItem title="Stegreifaufgabe" weightNumber="1" />
               <WeightItem title="Mündlich" weightNumber="1" />
             </SettingsContainer>
