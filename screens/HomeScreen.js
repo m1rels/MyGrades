@@ -150,7 +150,6 @@ function HomeScreen({ navigation }) {
           <AppText style={[styles.subTitle, styles.list__title]}>
             Deine Fächer
           </AppText>
-          <ActiveButton />
           <FlatList
             style={styles.list}
             data={subjects}

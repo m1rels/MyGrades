@@ -30,6 +30,14 @@ function SettingsScreen({ navigation }) {
     }
   }, [modalVisible]);
 
+  const [label, setLabel] = useState("10e");
+  const [grade, setGrade] = useState("10")
+
+  const handleSubmit = (values) => {
+    setGrade(values.grade);
+    setLabel(values.label);
+    setModalVisible(false);
+  }
 
   return (
     <Screen>
@@ -37,7 +45,7 @@ function SettingsScreen({ navigation }) {
       <SettingsContainer heading="Mirel Korajac">
         <SettingsItem title="Profil" onPress={() => navigation.navigate("Profile")} />
       </SettingsContainer>
-      <SettingsContainer heading="10. Klasse 10e">
+      <SettingsContainer heading={grade + ". Klasse " + label}>
         <SettingsItem title="Klasse ändern" onPress={() => setModalVisible(true)} />
         <Modal
         visible={modalVisible}
@@ -67,10 +75,10 @@ function SettingsScreen({ navigation }) {
             </View>
             <AppForm
               initialValues={{
-                grade: "",
-                label: ""
+                grade: grade,
+                label: label
               }}
-              onSubmit={(values) => console.log(values)}
+              onSubmit={(values) => handleSubmit(values)}
               validationSchema={validationSchema}
             >
               <AppFormField
@@ -95,9 +103,6 @@ function SettingsScreen({ navigation }) {
                 />
                 <SubmitButton
                   title="Speichern"
-                  onPress={() => {
-                    setModalVisible(false);
-                  }}
                 />
                 </AppForm>
                 </View>
