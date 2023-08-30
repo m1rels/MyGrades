@@ -130,7 +130,7 @@ export default function ExamWeightScreen() {
             setModalVisible(true);
             setShowSettingsContainer(true);
             setSelectedModalItem("Klausur");
-            setNewExamType(true);
+            setNewExamType(false);
           }} />
         </SettingsContainer>
       </View>
