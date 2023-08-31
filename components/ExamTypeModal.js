@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, View, Text, StyleSheet } from "react-native";
 import AppText from "../components/AppText";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
@@ -18,10 +18,10 @@ const validationSchema = Yup.object().shape({
     .label("Weight"),
 });
 
-function ExamTypeModal({ onPress, visible, showSettingsContainer, selectedItem, handleSubmit, newExamType }) {
-    
-    const examTypeInitialValue = selectedItem ? selectedItem.title : "";
-  const weightInitialValue = selectedItem ? selectedItem.weightNumber : "";
+function ExamTypeModal({ onPress, visible, showSettingsContainer=true, selectedItem, handleSubmit, newExamType=false }) {
+
+  const examTypeInitialValue = newExamType ? "" : selectedItem ? selectedItem.title : "";
+  const weightInitialValue =  newExamType ? "" : selectedItem ? selectedItem.weightNumber : "";
 
   return (
     <Modal visible={visible} animationType="slide">
@@ -59,7 +59,7 @@ function ExamTypeModal({ onPress, visible, showSettingsContainer, selectedItem, 
           {showSettingsContainer && (
             <SettingsContainer>
               <AppText style={styles.subTitle}>Unter-Prüfungsarten</AppText>
-              
+
               <WeightItem title="Stegreifaufgabe" weightNumber="1" />
               <WeightItem title="Mündlich" weightNumber="1" />
             </SettingsContainer>
