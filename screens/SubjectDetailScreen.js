@@ -47,8 +47,8 @@ function SubjectDetailScreen({ route }) {
   ]);
 
   const [grades, setGrades] = useState([
-    { id: 1, text: "Klausur", checked: false },
-    { id: 2, text: "Stegreifaufgabe", checked: false },
+    { id: 1, name: "Klausur", checked: false },
+    { id: 2, name: "Stegreifaufgabe", checked: false },
   ]);
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -60,7 +60,13 @@ function SubjectDetailScreen({ route }) {
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.icon}
-          onPress={() => setModalVisible(true)}
+          onPress={() => {
+            const updatedSubjects = subjects.map((subj) =>
+      subj.id === subject.id ? { ...subj, checked: true } : subj
+    );
+    setSubjects(updatedSubjects);
+
+            setModalVisible(true)}}
         >
           <MaterialCommunityIcons name="plus" size={40} />
         </TouchableOpacity>
@@ -107,7 +113,7 @@ function SubjectDetailScreen({ route }) {
                 name="subject"
                 data={subjects}
                 setData={setSubjects}
-                selectOne={true}
+                selectedSubject={subject} // Hier das ausgewählte Fach übergeben
               />
               <AppText>Wähle die Art deiner Note.</AppText>
               <AppFormPicker

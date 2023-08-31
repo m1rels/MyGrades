@@ -28,7 +28,7 @@ function AppPicker({
         style={styles.container}
         onPress={() => setModalVisible(true)}
       >
-        <AppText>{selectedItem ? selectedItem.text : title}</AppText>
+        <AppText>{selectedItem ? selectedItem.name : title}</AppText>
         <MaterialCommunityIcons
           name="arrow-right"
           size={20}

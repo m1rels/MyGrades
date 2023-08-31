@@ -13,6 +13,7 @@ function AppFormPicker({
   setData,
   selectOne,
   subject,
+  selectedSubject,
 }) {
   const { errors, setFieldValue, touched, values } = useFormikContext();
 
@@ -22,11 +23,12 @@ function AppFormPicker({
         title={title}
         data={data}
         setData={setData}
-        onSelectItem={(item) => setFieldValue(name, item)}
-        selectedItem={values[name]}
+        onSelectItem={(item) => {
+          setFieldValue(name, item)
+        }}
+        selectedItem={values[name] || selectedSubject}
         placeholder={placeholder}
         width={width}
-        selectOne={selectOne}
         subject={subject}
       />
       <ErrorMessage error={errors[name]} visible={touched[name]} />

@@ -67,7 +67,7 @@ function AppModal({
               data={data}
               renderItem={({ item }) => (
                 <AppCheckBox
-                  name={item.text}
+                  name={item.name}
                   onPress={() => {
                     onSelectItem(item);
                     closeModal();

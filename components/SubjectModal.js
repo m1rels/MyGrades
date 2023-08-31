@@ -81,7 +81,7 @@ function SubjectModal({
               data={data}
               renderItem={({ item }) => (
                 <SubjectCheckBox
-                  name={item.text}
+                  name={item.name}
                   onPress={() => {
                     handleCheckboxChange(item.id);
                     if (selectOne) {
