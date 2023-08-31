@@ -16,6 +16,7 @@ import { useState } from "react";
 import SubjectItem from "../components/SubjectItem";
 import ActiveButton from "../components/ActiveButton";
 import AppFormPicker from "../components/forms/AppFormPicker";
+import { calculateSubjectAverage, calculateTotalAverage } from "../hooks/calculateAverage";
 
 import * as Yup from "yup";
 
@@ -28,22 +29,22 @@ const validationSchema = Yup.object().shape({
 
 function HomeScreen({ navigation }) {
   const [subjects, setSubjects] = useState([
-    { id: 1, name: "Mathe", color: "blue", checked: false, grade: 1.3 },
-    { id: 2, name: "Deutsch", color: "orange", checked: false, grade: 1.3 },
-    { id: 3, name: "Englisch", color: "green", checked: false, grade: 1.3 },
-    { id: 4, name: "Französisch", color: "blue", checked: false, grade: 1.3 },
-    { id: 5, name: "Latein", color: "orange", checked: false, grade: 1.3 },
-    { id: 6, name: "Spanisch", color: "orange", checked: false, grade: 1.3 },
-    { id: 7, name: "Physik", color: "orange", checked: false, grade: 1.3 },
-    { id: 8, name: "Biologie", color: "green", checked: false, grade: 1.3 },
-    { id: 9, name: "Chemie", color: "blue", checked: false, grade: 1.3 },
-    { id: 10, name: "Geographie", color: "brown", checked: false, grade: 1.3 },
-    { id: 12, name: "Geschichte", color: "orange", checked: false, grade: 1.3 },
-    { id: 13, name: "Sport", color: "blue", checked: false, grade: 1.3 },
-    { id: 14, name: "Musik", color: "prurple", checked: false, grade: 1.3 },
-    { id: 15, name: "Kunst", color: "yellow", checked: false, grade: 1.3 },
-    { id: 16, name: "Religion", color: "pink", checked: false, grade: 1.3 },
-    { id: 17, name: "Ethik", color: "purple", checked: false, grade: 1.3 },
+    { id: 1, name: "Mathe", color: "blue", checked: false, grades: [2, 4, 6, 2] },
+    { id: 2, name: "Deutsch", color: "orange", checked: false, grades: [2, 4, 6, 2] },
+    { id: 3, name: "Englisch", color: "green", checked: false, grades: [2, 4, 6, 2] },
+    { id: 4, name: "Französisch", color: "blue", checked: false, grades: [2, 4, 6, 2] },
+    { id: 5, name: "Latein", color: "orange", checked: false, grades: [2, 4, 6, 2] },
+    { id: 6, name: "Spanisch", color: "orange", checked: false, grades: [2, 4, 6, 2] },
+    { id: 7, name: "Physik", color: "orange", checked: false, grades: [2, 4, 6, 2] },
+    { id: 8, name: "Biologie", color: "green", checked: false, grades: [2, 4, 6, 2] },
+    { id: 9, name: "Chemie", color: "blue", checked: false, grades: [2, 4, 6, 2] },
+    { id: 10, name: "Geographie", color: "brown", checked: false, grades: [2, 4, 6, 2] },
+    { id: 12, name: "Geschichte", color: "orange", checked: false, grades: [2, 4, 6, 2] },
+    { id: 13, name: "Sport", color: "blue", checked: false, grades: [2, 4, 6, 2] },
+    { id: 14, name: "Musik", color: "prurple", checked: false, grades: [2, 4, 6, 2] },
+    { id: 15, name: "Kunst", color: "yellow", checked: false, grades: [2, 4, 6, 2] },
+    { id: 16, name: "Religion", color: "pink", checked: false, grades: [2, 4, 6, 2] },
+    { id: 17, name: "Ethik", color: "purple", checked: false, grades: [2, 4, 6, 2] },
     // Weitere Elemente hinzufügen...
   ]);
 
@@ -54,13 +55,15 @@ function HomeScreen({ navigation }) {
 
   const [modalVisible, setModalVisible] = useState("false");
 
+  const TotalAverage = calculateTotalAverage(subjects);
+
   return (
     <Screen>
       <Text style={styles.title}>Hallo, Mirel!</Text>
       <View style={styles.container}>
         <View style={styles.header}>
         <AppText style={styles.subTitle}>Dein Notenschnitt</AppText>
-        <Text style={styles.gradeText}>Ø 2,33</Text>
+        <Text style={styles.gradeText}>{TotalAverage}</Text>
         <ActiveButton
           icon="plus"
           size={40}
@@ -151,22 +154,26 @@ function HomeScreen({ navigation }) {
             Deine Fächer
           </AppText>
           <FlatList
-            style={styles.list}
-            data={subjects}
-            renderItem={({ item }) => (
-              <SubjectItem
-                title={item.name}
-                grade={item.grade}
-                color={item.color}
-                bgColor="#002366"
-                onPress={() => {
-                  navigation.navigate("Subject", item)
-                }}
-              />
-            )}
-            keyExtractor={(item) => item.id}
-            scrollEnabled="true"
-          />
+  style={styles.list}
+  data={subjects}
+  renderItem={({ item }) => {
+    const averageGrade = calculateSubjectAverage(item.grades);
+    return (
+      <SubjectItem
+        title={item.name}
+        grade={averageGrade}
+        color={item.color}
+        bgColor="#002366"
+        onPress={() => {
+          navigation.navigate("Subject", item);
+        }}
+      />
+    );
+  }}
+  keyExtractor={(item) => item.id}
+  scrollEnabled={true}
+/>
+
         </View>
       </View>
     </Screen>

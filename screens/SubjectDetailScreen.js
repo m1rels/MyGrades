@@ -16,6 +16,7 @@ import AppText from "../components/AppText";
 import AppFormPicker from "../components/forms/AppFormPicker";
 
 import * as Yup from "yup";
+import { calculateSubjectAverage } from "../hooks/calculateAverage";
 
 const validationSchema = Yup.object().shape({
   grade: Yup.string().required().max(1).label("Grade"),
@@ -39,9 +40,9 @@ function SubjectDetailScreen({ route }) {
     { id: 12, name: "Geschichte", color: "orange", checked: false, grade: 1.3 },
     { id: 13, name: "Sport", color: "blue", checked: false, grade: 1.3 },
     { id: 14, name: "Musik", color: "prurple", checked: false, grade: 1.3 },
-    { id: 15, name: "Kunst", color: "yellow", checked: false, grade: 1.3 },
-    { id: 16, name: "Religion", color: "pink", checked: false, grade: 1.3 },
-    { id: 17, name: "Ethik", color: "purple", checked: false, grade: 1.3 },
+    { id: 15, name: "Kunst", color: "yellow", checked: false },
+    { id: 16, name: "Religion", color: "pink", checked: false },
+    { id: 17, name: "Ethik", color: "purple", checked: false },
     // Weitere Elemente hinzufügen...
   ]);
 
@@ -52,6 +53,7 @@ function SubjectDetailScreen({ route }) {
 
   const [modalVisible, setModalVisible] = useState(false);
   const subject = route.params;
+  const averageGrade = calculateSubjectAverage(subject.grades)
 
   return (
     <Screen>
@@ -63,7 +65,7 @@ function SubjectDetailScreen({ route }) {
           <MaterialCommunityIcons name="plus" size={40} />
         </TouchableOpacity>
       </View>
-      <SubjectDetails subject={subject.name} grade={subject.grade} />
+      <SubjectDetails subject={subject.name} grade={averageGrade} />
       <Modal visible={modalVisible} animationType="slide">
         <Screen>
           <View style={styles.header}>
