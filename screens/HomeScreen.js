@@ -29,28 +29,28 @@ const validationSchema = Yup.object().shape({
 
 function HomeScreen({ navigation }) {
   const [subjects, setSubjects] = useState([
-    { id: 1, name: "Mathe", color: "blue", checked: false, grades: [2, 4, 6, 2] },
-    { id: 2, name: "Deutsch", color: "orange", checked: false, grades: [2, 4, 6, 2] },
-    { id: 3, name: "Englisch", color: "green", checked: false, grades: [2, 4, 6, 2] },
-    { id: 4, name: "Französisch", color: "blue", checked: false, grades: [2, 4, 6, 2] },
-    { id: 5, name: "Latein", color: "orange", checked: false, grades: [2, 4, 6, 2] },
-    { id: 6, name: "Spanisch", color: "orange", checked: false, grades: [2, 4, 6, 2] },
-    { id: 7, name: "Physik", color: "orange", checked: false, grades: [2, 4, 6, 2] },
-    { id: 8, name: "Biologie", color: "green", checked: false, grades: [2, 4, 6, 2] },
-    { id: 9, name: "Chemie", color: "blue", checked: false, grades: [2, 4, 6, 2] },
-    { id: 10, name: "Geographie", color: "brown", checked: false, grades: [2, 4, 6, 2] },
-    { id: 12, name: "Geschichte", color: "orange", checked: false, grades: [2, 4, 6, 2] },
-    { id: 13, name: "Sport", color: "blue", checked: false, grades: [2, 4, 6, 2] },
-    { id: 14, name: "Musik", color: "prurple", checked: false, grades: [2, 4, 6, 2] },
-    { id: 15, name: "Kunst", color: "yellow", checked: false, grades: [2, 4, 6, 2] },
-    { id: 16, name: "Religion", color: "pink", checked: false, grades: [2, 4, 6, 2] },
-    { id: 17, name: "Ethik", color: "purple", checked: false, grades: [2, 4, 6, 2] },
+    { id: 1, name: "Mathe", color: "blue", checked: false, grades: [{id: 1, type: "Klausur", value: 2}, {id: 2, type: "Stegreifaufgabe", value: 4}, {id: 3, type: "Abfrage", value: 6}, {id: 4, type: "Klausur", value: 2}] },
+    { id: 2, name: "Deutsch", color: "orange", checked: false, grades: [{id: 1, type: "Klausur", value: 2}, {id: 2, type: "Stegreifaufgabe", value: 4}, {id: 3, type: "Abfrage", value: 6}, {id: 4, type: "Klausur", value: 2}] },
+    { id: 3, name: "Englisch", color: "green", checked: false, grades: [{id: 1, type: "Klausur", value: 2}, {id: 2, type: "Stegreifaufgabe", value: 4}, {id: 3, type: "Abfrage", value: 6}, {id: 4, type: "Klausur", value: 2}] },
+    { id: 4, name: "Französisch", color: "blue", checked: false, grades: [{id: 1, type: "Klausur", value: 2}, {id: 2, type: "Stegreifaufgabe", value: 4}, {id: 3, type: "Abfrage", value: 6}, {id: 4, type: "Klausur", value: 2}] },
+    { id: 5, name: "Latein", color: "orange", checked: false, grades: [{id: 1, type: "Klausur", value: 2}, {id: 2, type: "Stegreifaufgabe", value: 4}, {id: 3, type: "Abfrage", value: 6}, {id: 4, type: "Klausur", value: 2}] },
+    { id: 6, name: "Spanisch", color: "orange", checked: false, grades: [{id: 1, type: "Klausur", value: 2}, {id: 2, type: "Stegreifaufgabe", value: 4}, {id: 3, type: "Abfrage", value: 6}, {id: 4, type: "Klausur", value: 2}] },
+    { id: 7, name: "Physik", color: "orange", checked: false, grades: [{id: 1, type: "Klausur", value: 2}, {id: 2, type: "Stegreifaufgabe", value: 4}, {id: 3, type: "Abfrage", value: 6}, {id: 4, type: "Klausur", value: 2}] },
+    { id: 8, name: "Biologie", color: "green", checked: false, grades: [{id: 1, type: "Klausur", value: 2}, {id: 2, type: "Stegreifaufgabe", value: 4}, {id: 3, type: "Abfrage", value: 6}, {id: 4, type: "Klausur", value: 2}] },
+    { id: 9, name: "Chemie", color: "blue", checked: false, grades: [{id: 1, type: "Klausur", value: 2}, {id: 2, type: "Stegreifaufgabe", value: 4}, {id: 3, type: "Abfrage", value: 6}, {id: 4, type: "Klausur", value: 2}] },
+    { id: 10, name: "Geographie", color: "brown", checked: false, grades: [{id: 1, type: "Klausur", value: 2}, {id: 2, type: "Stegreifaufgabe", value: 4}, {id: 3, type: "Abfrage", value: 6}, {id: 4, type: "Klausur", value: 2}] },
+    { id: 12, name: "Geschichte", color: "orange", checked: false, grades: [{id: 1, type: "Klausur", value: 2}, {id: 2, type: "Stegreifaufgabe", value: 4}, {id: 3, type: "Abfrage", value: 6}, {id: 4, type: "Klausur", value: 2}] },
+    { id: 13, name: "Sport", color: "blue", checked: false, grades: [{id: 1, type: "Klausur", value: 2}, {id: 2, type: "Stegreifaufgabe", value: 4}, {id: 3, type: "Abfrage", value: 6}, {id: 4, type: "Klausur", value: 2}] },
+    { id: 14, name: "Musik", color: "prurple", checked: false, grades: [{id: 1, type: "Klausur", value: 2}, {id: 2, type: "Stegreifaufgabe", value: 4}, {id: 3, type: "Abfrage", value: 6}, {id: 4, type: "Klausur", value: 2}] },
+    { id: 15, name: "Kunst", color: "yellow", checked: false, grades: [{id: 1, type: "Klausur", value: 2}, {id: 2, type: "Stegreifaufgabe", value: 4}, {id: 3, type: "Abfrage", value: 6}, {id: 4, type: "Klausur", value: 2}] },
+    { id: 16, name: "Religion", color: "pink", checked: false, grades: [{id: 1, type: "Klausur", value: 2}, {id: 2, type: "Stegreifaufgabe", value: 4}, {id: 3, type: "Abfrage", value: 6}, {id: 4, type: "Klausur", value: 2}] },
+    { id: 17, name: "Ethik", color: "purple", checked: false, grades: [{id: 1, type: "Klausur", value: 2}, {id: 2, type: "Stegreifaufgabe", value: 4}, {id: 3, type: "Abfrage", value: 6}, {id: 4, type: "Klausur", value: 2}] },
     // Weitere Elemente hinzufügen...
   ]);
 
   const [grades, setGrades] = useState([
-    { id: 1, text: "Klausur", checked: false },
-    { id: 2, text: "Stegreifaufgabe", checked: false },
+    { id: 1, name: "Klausur", checked: false },
+    { id: 2, name: "Stegreifaufgabe", checked: false },
   ]);
 
   const [modalVisible, setModalVisible] = useState("false");

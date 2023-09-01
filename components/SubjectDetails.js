@@ -1,9 +1,9 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, FlatList } from "react-native";
 import GradeItem from "./GradeItem";
 import defaultStyles from "../config/styles";
 
-function SubjectDetails({ subject, grade }) {
+function SubjectDetails({ subject, grade, gradeValue, grades }) {
   return (
     <>
       <View style={styles.header}>
@@ -12,7 +12,12 @@ function SubjectDetails({ subject, grade }) {
       </View>
       <View style={styles.container}>
         <Text style={[defaultStyles.text, styles.subHeading]}>Prüfungen</Text>
-        <GradeItem />
+        <FlatList 
+          data={grades}
+          renderItem={({item}) => {
+            return(
+          <GradeItem gradeValue={item.value} examType={item.type} />)}}
+        />
       </View>
     </>
   );

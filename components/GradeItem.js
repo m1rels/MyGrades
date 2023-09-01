@@ -3,11 +3,11 @@ import { View, StyleSheet, Text } from "react-native";
 import AppText from "./AppText";
 import defaultStyles from "../config/styles";
 
-function GradeItem(props) {
+function GradeItem({gradeValue, examType}) {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Schriftlich</Text>
-      <Text style={[defaultStyles.text, styles.grade]}>3</Text>
+      <Text style={styles.text}>{examType}</Text>
+      <Text style={[defaultStyles.text, styles.grade]}>{gradeValue}</Text>
     </View>
   );
 }
@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     paddingHorizontal: 25,
+    marginVertical: 10,
   },
   text: {
     fontSize: 18,

@@ -52,8 +52,28 @@ function SubjectDetailScreen({ route }) {
   ]);
 
   const [modalVisible, setModalVisible] = useState(false);
-  const subject = route.params;
-  const averageGrade = calculateSubjectAverage(subject.grades)
+  const [subject, setSubject] = useState(route.params);
+  const [averageGrade, setAverageGrade] = useState(calculateSubjectAverage(subject.grades))
+
+  const handleSubmit = (values) => {
+    const newId = subject.grades.length + 1;
+
+
+    const gradeValue = parseFloat(values.grade);
+
+    const updatedGrades = [
+      ...subject.grades,
+      { id: newId, value: gradeValue, type: values.examType.name }
+    ];
+
+    const newAverage = calculateSubjectAverage(updatedGrades);
+
+    const updatedSubject = { ...subject, grades: updatedGrades };
+    setSubject(updatedSubject);
+    setAverageGrade(newAverage);
+
+    setModalVisible(false);
+  };
 
   return (
     <Screen>
@@ -71,7 +91,7 @@ function SubjectDetailScreen({ route }) {
           <MaterialCommunityIcons name="plus" size={40} />
         </TouchableOpacity>
       </View>
-      <SubjectDetails subject={subject.name} grade={averageGrade} />
+      <SubjectDetails subject={subject.name} grade={averageGrade} grades={subject.grades} />
       <Modal visible={modalVisible} animationType="slide">
         <Screen>
           <View style={styles.header}>
@@ -90,7 +110,7 @@ function SubjectDetailScreen({ route }) {
               examType: null,
               note: "",
             }}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={handleSubmit}
             validationSchema={validationSchema}
           >
             <View style={styles.formfield_container}>
@@ -138,9 +158,6 @@ function SubjectDetailScreen({ route }) {
             <View style={styles.button_form}>
               <SubmitButton
                 title="Speichern"
-                onPress={() => {
-                  setModalVisible(false);
-                }}
               />
             </View>
           </AppForm>
